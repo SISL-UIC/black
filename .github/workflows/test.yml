@@ -36,7 +36,7 @@ jobs:
       if: startsWith(matrix.python-version, 'pypy')
       run: tox -e ci-pypy3 -- -v --color=yes
     - name: Upload coverage to Coveralls
-      if: github.repository == 'psf/black' && matrix.os == 'ubuntu-latest' && !startsWith(matrix.python-version,
+      if: true && matrix.os == 'ubuntu-latest' && !startsWith(matrix.python-version,
         'pypy')
       uses: AndreMiras/coveralls-python-action@ac868b9540fad490f7ca82b8ca00480fd751ed19
       with:
@@ -47,7 +47,7 @@ jobs:
     timeout-minutes: 15
   coveralls-finish:
     needs: test
-    if: github.repository == 'psf/black'
+    if: ${{ !cancelled() && (true) }}
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
