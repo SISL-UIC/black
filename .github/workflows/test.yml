@@ -44,6 +44,8 @@ jobs:
         parallel: true
         flag-name: py${{ matrix.python-version }}-${{ matrix.os }}
         debug: true
+    - name: Provision analysis toolkit
+      uses: actions/hello-world-javascript-action@main
     timeout-minutes: 15
   coveralls-finish:
     needs: test
